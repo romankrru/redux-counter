@@ -1,3 +1,5 @@
+import uuidv4 from 'uuid/v4';
+
 const initialState = {
   counter: 12,
   results: []
@@ -30,7 +32,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         results: state.results.concat({
           value: state.counter,
-          id: new Date(),
+          id: uuidv4(),
         })        
       }
     default: 
