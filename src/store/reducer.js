@@ -35,6 +35,13 @@ const reducer = (state = initialState, action) => {
           id: uuidv4(),
         })        
       }
+    case 'REMOVE_RESULT':
+      const updatedResults = state.results.filter(el =>  el.id !== action.id);
+    
+      return {
+        ...state,
+        results: updatedResults,
+      }
     default: 
       return state;
   }
