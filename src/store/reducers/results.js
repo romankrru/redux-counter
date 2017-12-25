@@ -1,6 +1,6 @@
 import uuidv4 from 'uuid/v4';
 
-import * as actionTypes from '../actionTypes';
+import * as actionTypes from '../actions/actions';
 
 const initialState = {
   results: []
