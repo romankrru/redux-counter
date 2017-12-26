@@ -1,6 +1,7 @@
 import uuidv4 from 'uuid/v4';
 
 import * as actionTypes from '../actions/actionTypes';
+import { updateObject } from '../utility';
 
 const initialState = {
   results: []
@@ -18,11 +19,7 @@ const reducer = (state = initialState, action) => {
       }
     case actionTypes.REMOVE_RESULT:
       const updatedResults = state.results.filter(el => el.id !== action.id);
-
-      return {
-        ...state,
-        results: updatedResults,
-      }
+      return updateObject(state, { results: updatedResults });
     default:
       return state;
   }
