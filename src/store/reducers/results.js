@@ -7,19 +7,27 @@ const initialState = {
   results: []
 };
 
+const removeResult = (state, action) => {
+  const updatedResults = state.results.filter(el => el.id !== action.id);
+  return updateObject(state, { results: updatedResults });
+}
+
+const storeResult = (state, action) => {
+  return {
+    ...state,
+    results: state.results.concat({
+      value: action.value,
+      id: uuidv4(),
+    })
+  };
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.STORE_RESULT:
-      return {
-        ...state,
-        results: state.results.concat({
-          value: action.value,
-          id: uuidv4(),
-        })
-      }
+      return storeResult(state, action);
     case actionTypes.REMOVE_RESULT:
-      const updatedResults = state.results.filter(el => el.id !== action.id);
-      return updateObject(state, { results: updatedResults });
+      return removeResult(state, action);
     default:
       return state;
   }
